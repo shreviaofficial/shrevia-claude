@@ -226,23 +226,6 @@ ul, ol { list-style: none; }
 
 .rule { border: 0; border-top: 1px solid var(--line); }
 
-/* ghost numeral behind sections */
-.ghost-num {
-  position: absolute;
-  top: clamp(1rem, 4vw, 2.5rem);
-  right: var(--gutter);
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 300;
-  font-size: clamp(5rem, 12vw, 11rem);
-  line-height: 1;
-  color: transparent;
-  -webkit-text-stroke: 1px var(--ink-faint);
-  user-select: none;
-  pointer-events: none;
-}
-.band-dark .ghost-num { -webkit-text-stroke-color: rgba(239, 233, 219, 0.10); }
-
 /* ---------- buttons ---------- */
 .btn {
   display: inline-flex;
@@ -475,7 +458,7 @@ ul, ol { list-style: none; }
 /* hero 3D stage */
 .hero-stage {
   position: relative;
-  top: -2.4rem; /* lift the composition toward the headline */
+  top: -4.5rem; /* lift the composition to face the headline */
   z-index: 1;
   aspect-ratio: 1 / 1.05;
   max-height: 78vh;
