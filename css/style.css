@@ -744,11 +744,24 @@ ul, ol { list-style: none; }
   align-items: baseline;
   padding: clamp(1.6rem, 3vw, 2.4rem) 0;
   border-top: 1px solid var(--line);
-  transition: background 0.4s var(--ease-out), padding-left 0.4s var(--ease-out);
   position: relative;
 }
 .paper-row:last-child { border-bottom: 1px solid var(--line); }
-.paper-row:hover { background: rgba(229, 223, 207, 0.4); padding-left: 1rem; }
+/* hover lives on the children + a backdrop pseudo-element, so it
+   never fights the .reveal transition that owns the row itself —
+   compositor-only, no re-wrap, glides smoothly */
+.paper-row::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(229, 223, 207, 0.4);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-out);
+}
+.paper-row:hover::before { opacity: 1; }
+.paper-row > * { transition: transform 0.5s var(--ease-out); }
+.paper-row:hover > * { transform: translateX(0.75rem); }
 .paper-row .rp {
   font-family: var(--mono);
   font-size: 0.72rem;
@@ -987,8 +1000,23 @@ ul, ol { list-style: none; }
   padding: 2.2rem 0;
   border-top: 1px solid var(--line);
   align-items: baseline;
+  position: relative;
 }
 .roadmap-item:last-child { border-bottom: 1px solid var(--line); }
+/* same reveal-safe hover treatment as .paper-row */
+.roadmap-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(229, 223, 207, 0.4);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-out);
+}
+.roadmap-item:hover::before { opacity: 1; }
+.roadmap-item > * { transition: transform 0.5s var(--ease-out); }
+.roadmap-item:hover > * { transform: translateX(0.75rem); }
+.roadmap-item:hover .phase::before { background: var(--copper); }
 .roadmap-item .phase {
   font-family: var(--mono);
   font-size: 0.68rem;
@@ -1006,6 +1034,7 @@ ul, ol { list-style: none; }
   border: 1.5px solid var(--copper);
   border-radius: 50%;
   background: transparent;
+  transition: background-color 0.4s var(--ease-out);
 }
 .roadmap-item.now .phase::before { background: var(--copper); }
 .roadmap-item h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 450; margin-bottom: 0.45rem; }
