@@ -1,0 +1,11 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    { "source": "/Home", "destination": "/index.html" },
+    { "source": "/Research", "destination": "/research.html" },
+    { "source": "/Technology", "destination": "/technology.html" },
+    { "source": "/Vision", "destination": "/vision.html" },
+    { "source": "/The Lab", "destination": "/team.html" },
+    { "source": "/Investors", "destination": "/investors.html" }
+  ]
+}
