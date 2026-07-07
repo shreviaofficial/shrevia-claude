@@ -40,6 +40,15 @@
         document.body.style.overflow = "";
       });
     });
+    // bfcache restore (mobile back/forward) can bring the page back
+    // with the menu still open — reset it.
+    window.addEventListener("pageshow", function (e) {
+      if (e.persisted) {
+        menu.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      }
+    });
   }
 
   /* ---------- scroll reveals ---------- */

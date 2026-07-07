@@ -293,9 +293,18 @@ ul, ol { list-style: none; }
 }
 .site-header.scrolled {
   background: rgba(244, 240, 230, 0.82);
+  border-bottom-color: var(--line-soft);
+}
+/* blur lives on a pseudo-element: backdrop-filter on the header
+   itself would make it the containing block for the fixed
+   .mobile-menu, collapsing the menu to a transparent sliver */
+.site-header.scrolled::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
-  border-bottom-color: var(--line-soft);
 }
 .nav {
   display: flex;
@@ -1132,7 +1141,7 @@ ul, ol { list-style: none; }
   color: transparent;
   -webkit-text-stroke: 1px rgba(239, 233, 219, 0.16);
   user-select: none;
-  transform: translateY(0.14em);
+  margin-bottom: 0.6rem;
   transition: -webkit-text-stroke-color 0.6s;
 }
 .site-footer:hover .footer-wordmark { -webkit-text-stroke-color: rgba(216, 154, 110, 0.3); }
