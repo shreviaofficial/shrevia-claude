@@ -458,7 +458,6 @@ ul, ol { list-style: none; }
 /* hero 3D stage */
 .hero-stage {
   position: relative;
-  top: -4.5rem; /* lift the composition to face the headline */
   z-index: 1;
   aspect-ratio: 1 / 1.05;
   max-height: 78vh;
@@ -470,11 +469,16 @@ ul, ol { list-style: none; }
   width: 100% !important;
   height: 100% !important;
 }
-/* the hero canvas bleeds past its stage so the sphere reads
+/* home hero only — the substrate stage lifts to face the headline,
+   and its canvas bleeds past the stage so the sphere reads
    full-bleed while the camera keeps every particle in frame
    (max-width: none defeats the global canvas reset above).
-   Desktop: enlarged and pulled up-left toward the headline. */
-.hero-stage .scene-canvas {
+   Other pages' scenes (e.g. the technology stack) keep the
+   default inset:0 geometry. */
+.stage-substrate {
+  top: -4.5rem;
+}
+#substrate-scene {
   left: -12%;
   top: -13.5%;
   width: 118% !important;
@@ -1211,8 +1215,8 @@ ul, ol { list-style: none; }
   .hero-grid { grid-template-columns: 1fr; }
   .hero { min-height: auto; padding-top: 130px; }
   .hero-stage { max-width: 560px; margin-inline: auto; width: 100%; aspect-ratio: 1/0.92; top: 0; }
-  /* freeze the stacked-layout canvas geometry (desktop values differ) */
-  .hero-stage .scene-canvas { left: -3%; top: -6%; width: 106% !important; height: 112% !important; }
+  /* freeze the stacked-layout substrate geometry (desktop values differ) */
+  #substrate-scene { left: -3%; top: -6%; width: 106% !important; height: 112% !important; }
   .stage-caption { bottom: -2.6rem; }
   .paper-row { grid-template-columns: 90px 1fr; }
   .paper-row p { grid-column: 2; }
