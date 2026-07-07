@@ -487,14 +487,15 @@ ul, ol { list-style: none; }
   width: 100% !important;
   height: 100% !important;
 }
-/* the hero canvas bleeds symmetrically past its stage so the sphere
-   reads full-bleed while the camera keeps every particle in frame
-   (max-width: none defeats the global canvas reset above) */
+/* the hero canvas bleeds past its stage so the sphere reads
+   full-bleed while the camera keeps every particle in frame
+   (max-width: none defeats the global canvas reset above).
+   Desktop: enlarged and pulled up-left toward the headline. */
 .hero-stage .scene-canvas {
-  left: -3%;
-  top: -6%;
-  width: 106% !important;
-  height: 112% !important;
+  left: -12%;
+  top: -13.5%;
+  width: 118% !important;
+  height: 118% !important;
   max-width: none;
 }
 .stage-caption {
@@ -1227,6 +1228,8 @@ ul, ol { list-style: none; }
   .hero-grid { grid-template-columns: 1fr; }
   .hero { min-height: auto; padding-top: 130px; }
   .hero-stage { max-width: 560px; margin-inline: auto; width: 100%; aspect-ratio: 1/0.92; top: 0; }
+  /* freeze the stacked-layout canvas geometry (desktop values differ) */
+  .hero-stage .scene-canvas { left: -3%; top: -6%; width: 106% !important; height: 112% !important; }
   .stage-caption { bottom: -2.6rem; }
   .paper-row { grid-template-columns: 90px 1fr; }
   .paper-row p { grid-column: 2; }
