@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shrevia — Autonomous Intelligence Research Lab</title>
+  <meta name="description" content="Shrevia Intelligence Labs is an independent research lab engineering autonomous intelligence systems and scalable automation infrastructure for the next decade of computing." />
+  <meta property="og:title" content="Shrevia — Autonomous Intelligence Research Lab" />
+  <meta property="og:description" content="Building autonomous AI systems for the future. Research lab · Cohort 01." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.shrevia.com/" />
+  <meta name="theme-color" content="#f4f0e6" />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+  </script>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ================= header ================= -->
+  <header class="site-header">
+    <div class="container container-wide">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="index.html" aria-label="Shrevia — home">
+          <svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <circle cx="16" cy="16" r="7.2" stroke="currentColor" stroke-width="1.5"/>
+            <ellipse cx="16" cy="16" rx="13.4" ry="5.2" stroke="#b35420" stroke-width="1.2" transform="rotate(-24 16 16)"/>
+            <circle cx="27.2" cy="10.6" r="2.3" fill="#b35420"/>
+          </svg>
+          Shrevia<sup>LABS</sup>
+        </a>
+        <div class="nav-links">
+          <a href="research.html">Research</a>
+          <a href="technology.html">Technology</a>
+          <a href="vision.html">Vision</a>
+          <a href="team.html">Team</a>
+        </div>
+        <a class="btn nav-cta" href="investors.html">Investors <span class="arr">→</span></a>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle menu">
+          <span></span><span></span>
+        </button>
+      </nav>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="index.html">Home <span class="mono-note">01</span></a>
+      <a href="research.html">Research <span class="mono-note">02</span></a>
+      <a href="technology.html">Technology <span class="mono-note">03</span></a>
+      <a href="vision.html">Vision <span class="mono-note">04</span></a>
+      <a href="team.html">Team <span class="mono-note">05</span></a>
+      <a href="investors.html">Investors <span class="mono-note">06</span></a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= hero ================= -->
+    <section class="hero">
+      <div class="container container-wide">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow reveal"><span class="dot"></span> Research lab · Cohort 01</p>
+            <h1 class="h-display reveal" style="--d:.08s">
+              Building <em class="accent-i">autonomous</em><br />
+              AI systems for<br />
+              the <span class="sketch">future.<svg viewBox="0 0 320 14" aria-hidden="true" preserveAspectRatio="none"><path pathLength="320" d="M3 9 C 58 3, 132 12, 196 6 S 286 4, 317 8" /></svg></span>
+            </h1>
+            <p class="lede reveal" style="--d:.16s">
+              Shrevia is an independent research lab engineering autonomous intelligence
+              systems and scalable automation infrastructure for the next decade of computing.
+            </p>
+            <div class="hero-actions reveal" style="--d:.24s">
+              <a class="btn" href="research.html">Explore the research <span class="arr">→</span></a>
+              <a class="btn btn-ghost" href="vision.html">Read the thesis</a>
+            </div>
+            <div class="hero-meta reveal" style="--d:.32s">
+              <div><div class="k">Founded</div><div class="v">2024</div></div>
+              <div><div class="k">Structure</div><div class="v">Remote-first lab</div></div>
+              <div><div class="k">Internal build</div><div class="v">OS v0.4.1<span class="accent-i">-alpha</span></div></div>
+            </div>
+          </div>
+
+          <div class="hero-stage reveal" style="--d:.2s">
+            <canvas id="substrate-scene" class="scene-canvas" aria-label="Generative rendering of an agent substrate — particles and connections forming an organic sphere"></canvas>
+            <div class="scene-fallback" id="substrate-fallback" hidden>
+              <svg viewBox="0 0 400 400" fill="none" aria-hidden="true">
+                <circle cx="200" cy="200" r="150" stroke="rgba(26,23,18,.25)" stroke-dasharray="2 7" />
+                <circle cx="200" cy="200" r="104" stroke="rgba(26,23,18,.35)" stroke-dasharray="1 6" />
+                <ellipse cx="200" cy="200" rx="186" ry="64" stroke="rgba(179,84,32,.45)" transform="rotate(-22 200 200)" />
+                <circle cx="318" cy="128" r="5" fill="#b35420" />
+                <circle cx="124" cy="262" r="3.4" fill="#1a1712" />
+                <circle cx="252" cy="300" r="2.6" fill="#1a1712" />
+              </svg>
+            </div>
+            <p class="stage-caption">fig. 01 — agent substrate · live render</p>
+
+            <aside class="instrument hero-instrument" aria-label="System telemetry">
+              <div class="instrument-head">
+                <span>System telemetry</span>
+                <span class="lights"><span></span><span></span><span></span></span>
+              </div>
+              <div class="instrument-body">
+                <div class="telemetry-row"><span class="k">shrevia.core</span><span class="v ok">online</span></div>
+                <div class="telemetry-row"><span class="k">orchestrator</span><span class="v ok">nominal</span></div>
+                <div class="telemetry-row"><span class="k">agent-mesh</span><span class="v">14 nodes</span></div>
+                <div class="telemetry-row"><span class="k">reasoning.loop</span><span class="v live">active</span></div>
+                <div class="eq" aria-hidden="true">
+                  <i style="animation-delay:0s"></i><i style="animation-delay:.18s"></i><i style="animation-delay:.36s"></i><i style="animation-delay:.1s"></i><i style="animation-delay:.5s"></i><i style="animation-delay:.28s"></i><i style="animation-delay:.62s"></i><i style="animation-delay:.04s"></i><i style="animation-delay:.44s"></i><i style="animation-delay:.22s"></i><i style="animation-delay:.58s"></i><i style="animation-delay:.14s"></i>
+                </div>
+              </div>
+              <div class="instrument-foot">
+                <span class="cursor-blink">// shrevia-os · v0.4.1-alpha</span>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= marquee ================= -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <ul>
+          <li>Multi-Agent Systems</li>
+          <li>Decision Intelligence</li>
+          <li>Scalable Infrastructure</li>
+          <li>Continual Learning</li>
+          <li>Causal Reasoning</li>
+          <li>Compositional Planning</li>
+          <li>Self-Reflective Models</li>
+        </ul>
+        <ul>
+          <li>Multi-Agent Systems</li>
+          <li>Decision Intelligence</li>
+          <li>Scalable Infrastructure</li>
+          <li>Continual Learning</li>
+          <li>Causal Reasoning</li>
+          <li>Compositional Planning</li>
+          <li>Self-Reflective Models</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ================= capabilities ================= -->
+    <section class="section" id="capabilities">
+      <span class="ghost-num" aria-hidden="true">01</span>
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow reveal"><span class="tick"></span> 01 — Capabilities</p>
+            <h2 class="h-section reveal" style="--d:.08s">Intelligence, engineered<br />as <em class="accent-i">infrastructure.</em></h2>
+          </div>
+          <p class="lede reveal" style="--d:.16s">
+            Four research primitives. Each compounds on the last — converging toward a
+            coherent substrate for autonomous computation.
+          </p>
+        </div>
+
+        <div class="card-grid reveal" style="--d:.1s">
+          <article class="card tilt">
+            <div>
+              <div class="icon">
+                <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                  <path d="M22 36c-7.7 0-14-6.3-14-14S14.3 8 22 8s14 6.3 14 14c0 4.4-2 8.3-5.2 10.9" />
+                  <path d="M27 30.5 30.8 33l.6-4.6" />
+                  <circle cx="22" cy="22" r="4.6" stroke-dasharray="2.4 3.4" />
+                </svg>
+              </div>
+              <h3>Autonomous Reasoning</h3>
+              <p>Agents that plan, reflect, and self-correct across unbounded time horizons.</p>
+            </div>
+            <div class="idx">01</div>
+          </article>
+
+          <article class="card tilt">
+            <div>
+              <div class="icon">
+                <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                  <circle cx="22" cy="11" r="4" /><circle cx="10" cy="32" r="4" /><circle cx="34" cy="32" r="4" />
+                  <path d="M19.5 14.5 12 28.5M24.5 14.5 32 28.5M14 32h16" stroke-dasharray="3 3.6" />
+                  <circle cx="22" cy="25" r="1.7" fill="currentColor" stroke="none" />
+                </svg>
+              </div>
+              <h3>Multi-Agent Orchestration</h3>
+              <p>Coordinated swarms that negotiate, delegate, and compose solutions in parallel.</p>
+            </div>
+            <div class="idx">02</div>
+          </article>
+
+          <article class="card tilt">
+            <div>
+              <div class="icon">
+                <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M8 15.5 22 9l14 6.5L22 22 8 15.5Z" />
+                  <path d="M8 22.5 22 29l14-6.5" stroke-dasharray="3 3.4" />
+                  <path d="M8 29.5 22 36l14-6.5" stroke-dasharray="1.6 4" />
+                </svg>
+              </div>
+              <h3>Adaptive Infrastructure</h3>
+              <p>Elastic runtimes that scale intelligence across heterogeneous compute fabrics.</p>
+            </div>
+            <div class="idx">03</div>
+          </article>
+
+          <article class="card tilt">
+            <div>
+              <div class="icon">
+                <svg viewBox="0 0 44 44" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                  <path d="M22 37V20" />
+                  <path d="M22 26c0-6 -4.5-9-9.5-9 0 6 3.5 9.5 9.5 9M22 21c0-7 5-10.5 10.5-10.5 0 7-4.5 10.7-10.5 10.5" />
+                  <path d="M13 37h18" stroke-dasharray="2.6 3.4" />
+                </svg>
+              </div>
+              <h3>Continual Learning</h3>
+              <p>Systems that evolve with operational context — without retraining from zero.</p>
+            </div>
+            <div class="idx">04</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= trajectory / stats ================= -->
+    <section class="section-tight" id="trajectory">
+      <div class="container">
+        <p class="eyebrow reveal" style="margin-bottom:2.2rem"><span class="tick"></span> 02 — Trajectory</p>
+        <div class="stats reveal" style="--d:.1s">
+          <div class="stat"><div class="v"><span data-count="4" data-pad="2">00</span></div><div class="l">Core research areas</div></div>
+          <div class="stat"><div class="v"><span data-count="11" data-pad="2">00</span></div><div class="l">Active experiments</div></div>
+          <div class="stat"><div class="v">∞<span class="suffix"></span></div><div class="l">Compute horizon</div></div>
+          <div class="stat"><div class="v">R&amp;D</div><div class="l">Current phase</div></div>
+        </div>
+        <p class="mono-note reveal" style="margin-top:1.4rem; --d:.2s">Early-stage development and pilot systems — with continuous research and system improvements.</p>
+      </div>
+    </section>
+
+    <!-- ================= vision quote (dark) ================= -->
+    <section class="band-dark section" id="vision-teaser">
+      <span class="ghost-num" aria-hidden="true">03</span>
+      <div class="container">
+        <p class="eyebrow reveal"><span class="tick"></span> 03 — Vision</p>
+        <div class="quote-block" style="margin-top:2.6rem">
+          <blockquote class="reveal" style="--d:.1s">
+            “The <em>operating system</em> of the next century will be composed of reasoning
+            agents — cooperating, disagreeing, and composing solutions across a substrate
+            we have not yet built. Shrevia exists to build that substrate.”
+          </blockquote>
+          <cite class="reveal" style="--d:.2s">Shrevia Labs · Thesis Doc 001</cite>
+        </div>
+        <div class="reveal" style="margin-top:3rem; --d:.28s">
+          <a class="btn btn-ghost" href="vision.html">Read the full vision <span class="arr">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= selected research ================= -->
+    <section class="section" id="selected-research">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow reveal"><span class="tick"></span> Working papers &amp; frameworks</p>
+            <h2 class="h-section reveal" style="--d:.08s">Selected <em class="accent-i">research.</em></h2>
+          </div>
+          <a class="link-arrow reveal" style="--d:.16s" href="research.html">Full research index <span>→</span></a>
+        </div>
+
+        <div>
+          <article class="paper-row reveal">
+            <span class="rp">RP-001</span>
+            <div>
+              <h3>Adaptive Multi-Agent Architectures</h3>
+              <span class="cat">Multi-Agent Systems</span>
+            </div>
+            <p>A framework for dynamically reconfigurable agent swarms — enabling task-specialised topologies to emerge from continuous coordination gradients rather than static orchestration.</p>
+            <span class="end">working paper</span>
+          </article>
+          <article class="paper-row reveal" style="--d:.08s">
+            <span class="rp">RP-002</span>
+            <div>
+              <h3>Context-Aware AI Systems</h3>
+              <span class="cat">Decision Intelligence</span>
+            </div>
+            <p>We formalise a class of agents that reason over layered environmental context — integrating episodic memory, operational state, and goal invariants into a unified decision substrate.</p>
+            <span class="end">working paper</span>
+          </article>
+          <article class="paper-row reveal" style="--d:.16s">
+            <span class="rp">RP-003</span>
+            <div>
+              <h3>Scalable Runtimes for Autonomous Agents</h3>
+              <span class="cat">Infrastructure</span>
+            </div>
+            <p>A runtime specification for elastic agent populations — cold-start constraints, deterministic replay, and resource-aware scheduling across heterogeneous compute fabric.</p>
+            <span class="end">working paper</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= investors CTA ================= -->
+    <section class="section-tight" id="investors-cta" style="padding-bottom:var(--space-section)">
+      <span class="ghost-num" aria-hidden="true" style="top:0">04</span>
+      <div class="container">
+        <div class="cta-panel reveal">
+          <p class="eyebrow" style="justify-content:center"><span class="dot"></span> 04 — Investors</p>
+          <h2 class="h-section" style="margin-top:1.6rem">Scaling autonomous intelligence requires <em class="accent-i">aligned</em> capital.</h2>
+          <p class="lede">Seeking strategic partners to scale autonomous intelligence globally. If your thesis centres on the next epoch of computation, we invite a direct conversation.</p>
+          <div class="actions">
+            <a class="btn" href="investors.html">Begin a conversation <span class="arr">→</span></a>
+            <a class="btn btn-ghost" href="mailto:shreviaofficial@gmail.com">shreviaofficial@gmail.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= footer ================= -->
+  <footer class="site-footer">
+    <div class="container container-wide">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html">
+            <svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+              <circle cx="16" cy="16" r="7.2" stroke="currentColor" stroke-width="1.5"/>
+              <ellipse cx="16" cy="16" rx="13.4" ry="5.2" stroke="#d89a6e" stroke-width="1.2" transform="rotate(-24 16 16)"/>
+              <circle cx="27.2" cy="10.6" r="2.3" fill="#d89a6e"/>
+            </svg>
+            Shrevia<sup>LABS</sup>
+          </a>
+          <p>An independent research lab engineering autonomous intelligence systems and scalable automation infrastructure for the next decade of computing.</p>
+          <p class="est">EST. 2024 — Cohort 01</p>
+        </div>
+        <div class="footer-col">
+          <h4>Index</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="research.html">Research</a></li>
+            <li><a href="technology.html">Technology</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="vision.html">Vision</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="investors.html">Investors</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Direct correspondence</h4>
+          <ul>
+            <li><a class="mail" href="mailto:shreviaofficial@gmail.com">shreviaofficial@gmail.com</a></li>
+            <li style="color:var(--bone-2); font-size:.94rem; margin-top:.4rem">Remote-first research collective.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-wordmark" aria-hidden="true">SHREVIA</div>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> Shrevia Intelligence Labs. All frameworks reserved.</span>
+        <span>Shrevia OS <span class="sep">✳</span> v0.4.1-alpha <span class="sep">✳</span> Designed for the autonomous era</span>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/scene.js"></script>
+  <script src="js/main.js" defer></script>
+</body>
+</html>
