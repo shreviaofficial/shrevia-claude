@@ -130,12 +130,14 @@ function initSubstrate(canvas) {
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 50);
 
-  /* Fit the whole substrate (blob ≈1.32 max + rings) inside the
-     canvas at any aspect ratio, so nothing gets clipped at the edges. */
-  const FIT_RADIUS = 1.56;
+  /* Frame the particle sphere (max radius ≈1.32 incl. breathing)
+     edge-to-edge in the canvas at any aspect ratio — as large as it
+     can be without clipping. The orbit rings intentionally sweep
+     past the frame, like a cropped figure plate. */
+  const FIT_RADIUS = 1.32;
   const frameSubstrate = () => {
     const vFit = FIT_RADIUS / Math.tan((camera.fov * Math.PI) / 360);
-    camera.position.z = Math.max(vFit, vFit / camera.aspect) * 1.04;
+    camera.position.z = Math.max(vFit, vFit / camera.aspect) * 1.02;
   };
 
   const group = new THREE.Group();
@@ -222,8 +224,8 @@ function initSubstrate(canvas) {
     loop.rotation.set(tiltX, 0, tiltZ);
     return loop;
   }
-  const ringA = ring(1.46, COPPER, 0.42, Math.PI / 2.25, -0.42);
-  const ringB = ring(1.6, INK, 0.14, Math.PI / 1.9, 0.6);
+  const ringA = ring(1.62, COPPER, 0.42, Math.PI / 2.25, -0.42);
+  const ringB = ring(1.8, INK, 0.14, Math.PI / 1.9, 0.6);
   group.add(ringA, ringB);
 
   // satellite node riding ring A
@@ -264,7 +266,7 @@ function initSubstrate(canvas) {
     group.scale.setScalar(breathe);
 
     const a = t * 0.42;
-    satellite.position.set(Math.cos(a) * 1.46, Math.sin(a) * 1.46, 0);
+    satellite.position.set(Math.cos(a) * 1.62, Math.sin(a) * 1.62, 0);
 
     renderer.render(scene, camera);
   });
