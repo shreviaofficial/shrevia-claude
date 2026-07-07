@@ -14,12 +14,13 @@ Fraunces serif display type, mono "instrument" labels, film grain, and hand-sket
 
 ```
 shrevia-redesign/
-├── index.html         Home — hero + telemetry, capabilities, trajectory, vision teaser, research, CTA
+├── index.html         Home — hero, capabilities, trajectory, vision teaser, research, CTA
 ├── research.html      Focus areas, working papers (RP-001…003), methodology
 ├── technology.html    Shrevia OS, terminal strip, six-primitive stack
 ├── vision.html        Manifesto, Thesis Doc 001, three invariants, roadmap
-├── team.html          Six members + hiring band
+├── team.html          "The Lab" — founder + agent roster, hiring band
 ├── investors.html     Thesis, traction snapshot, investment inquiry form
+├── api/contact.js     Vercel serverless function → Google Apps Script → Sheet
 ├── css/style.css      Full design system (tokens, components, responsive, reduced-motion)
 ├── js/main.js         Nav, mobile menu, scroll reveals, counters, tilt, form, 3D watchdog
 ├── js/scene.js        three.js scenes (ESM via import map → jsDelivr CDN, pinned 0.160.0)
@@ -40,18 +41,25 @@ recommended so the ES-module scene loads consistently.)
 
 ## Deploy
 
-Pure static — drop the folder on Netlify / Vercel / Cloudflare Pages / GitHub Pages as-is.
-No build step.
+Static pages + one serverless function. On **Vercel** (framework preset: Other, no build
+step) everything works out of the box: the pages are served as-is and `api/contact.js`
+becomes `POST /api/contact` automatically.
+
+**Required Vercel environment variable:** `APP_SCRIPT_URL` — the deployed Google Apps
+Script web-app URL that appends rows to the Google Sheet
+(Project → Settings → Environment Variables). Without it the form shows the retry note.
 
 ## Notes for production
 
-- **Investor form** ([investors.html](investors.html)) is front-end only. Wire the submit
-  handler in [js/main.js](js/main.js) (`investor-form`) to your endpoint
-  (Formspree, a serverless function, etc.). It currently validates and shows the
-  success state without sending data.
+- **Investor form** ([investors.html](investors.html)) submits JSON to `/api/contact`;
+  the function forwards it URL-encoded to the Apps Script with the field keys
+  `Name` / `Email` / `Number` / `Message` (Number ← mobile field, Message ← thesis field).
+  The endpoint only exists on Vercel — on a plain local static server the form will
+  show the error note by design.
 - **3D fallback** — if WebGL or the CDN is unavailable, scenes swap to static SVG
   equivalents automatically; `prefers-reduced-motion` renders a static pose.
 - Fonts are loaded from Google Fonts (Fraunces, Instrument Sans, IBM Plex Mono);
   self-host them if you need to drop the third-party request.
-- All copy was carried over from the current live site and lightly edited for the
-  new layout; the team, papers, telemetry values, and contact email are unchanged.
+- Most copy was carried over from the original live site; the team page was later
+  replaced with "The Lab" (founder + agent roster) — the old researcher profiles
+  were placeholders and should not be reintroduced.

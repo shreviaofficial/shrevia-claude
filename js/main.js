@@ -133,11 +133,46 @@
         form.reportValidity();
         return;
       }
-      // No backend wired yet — swap to success state.
-      // Hook this handler to your endpoint (Formspree / API) when ready.
-      form.style.display = "none";
-      success.classList.add("show");
-      success.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block: "center" });
+
+      var btn = form.querySelector('button[type="submit"]');
+      var errNote = document.getElementById("form-error");
+      var originalBtn = btn.innerHTML;
+      btn.disabled = true;
+      btn.textContent = "Sending inquiry…";
+      if (errNote) errNote.hidden = true;
+
+      // Field names match the Apps Script's e.parameter keys.
+      var payload = {
+        Name: document.getElementById("f-name").value.trim(),
+        Email: document.getElementById("f-email").value.trim(),
+        Number: document.getElementById("f-mobile").value.trim(),
+        Message: document.getElementById("f-thesis").value.trim(),
+      };
+
+      fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      })
+        .then(function (res) {
+          return res
+            .json()
+            .catch(function () { return {}; })
+            .then(function (data) {
+              if (!res.ok || !data.ok) throw new Error(data.error || "HTTP " + res.status);
+            });
+        })
+        .then(function () {
+          form.style.display = "none";
+          success.classList.add("show");
+          success.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth", block: "center" });
+        })
+        .catch(function (err) {
+          console.error("Investor form submission failed:", err);
+          btn.disabled = false;
+          btn.innerHTML = originalBtn;
+          if (errNote) errNote.hidden = false;
+        });
     });
   }
 
