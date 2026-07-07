@@ -30,9 +30,9 @@ function makeRenderer(canvas) {
 }
 
 function fitToParent(renderer, camera, canvas) {
-  const parent = canvas.parentElement;
-  const w = parent.clientWidth;
-  const h = parent.clientHeight;
+  /* size to the canvas's own CSS box (it may bleed past its parent) */
+  const w = canvas.clientWidth;
+  const h = canvas.clientHeight;
   if (w === 0 || h === 0) return;
   renderer.setSize(w, h, false);
   camera.aspect = w / h;
@@ -130,14 +130,16 @@ function initSubstrate(canvas) {
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 50);
 
-  /* Frame the particle sphere (max radius ≈1.32 incl. breathing)
-     edge-to-edge in the canvas at any aspect ratio — as large as it
-     can be without clipping. The orbit rings intentionally sweep
-     past the frame, like a cropped figure plate. */
-  const FIT_RADIUS = 1.32;
+  /* Frame the particle sphere edge-to-edge in the canvas at any
+     aspect ratio — as large as it can be without clipping. maxR is
+     the measured radius of the generated cloud (not a theoretical
+     bound), so there is no dead margin. The orbit rings intentionally
+     sweep past the frame, like a cropped figure plate. */
+  let maxR = 0;
   const frameSubstrate = () => {
-    const vFit = FIT_RADIUS / Math.tan((camera.fov * Math.PI) / 360);
-    camera.position.z = Math.max(vFit, vFit / camera.aspect) * 1.02;
+    const fit = maxR * 1.035; // breathing (±1.3%) + hairline margin
+    const vFit = fit / Math.tan((camera.fov * Math.PI) / 360);
+    camera.position.z = Math.max(vFit, vFit / camera.aspect);
   };
 
   const group = new THREE.Group();
@@ -161,6 +163,7 @@ function initSubstrate(canvas) {
       Math.cos(inc)
     );
     v.multiplyScalar(blobRadius(v));
+    if (v.length() > maxR) maxR = v.length();
     pts.push(v);
     positions.set([v.x, v.y, v.z], i * 3);
 
@@ -253,7 +256,7 @@ function initSubstrate(canvas) {
     fitToParent(renderer, camera, canvas);
     frameSubstrate();
   };
-  new ResizeObserver(resize).observe(canvas.parentElement);
+  new ResizeObserver(resize).observe(canvas);
   resize();
 
   let spin = 0.35; // settle at a pleasing initial angle
