@@ -129,7 +129,14 @@ function initSubstrate(canvas) {
   const renderer = makeRenderer(canvas);
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 50);
-  camera.position.z = 3.15;
+
+  /* Fit the whole substrate (blob ≈1.32 max + rings) inside the
+     canvas at any aspect ratio, so nothing gets clipped at the edges. */
+  const FIT_RADIUS = 1.56;
+  const frameSubstrate = () => {
+    const vFit = FIT_RADIUS / Math.tan((camera.fov * Math.PI) / 360);
+    camera.position.z = Math.max(vFit, vFit / camera.aspect) * 1.04;
+  };
 
   const group = new THREE.Group();
   scene.add(group);
@@ -215,8 +222,8 @@ function initSubstrate(canvas) {
     loop.rotation.set(tiltX, 0, tiltZ);
     return loop;
   }
-  const ringA = ring(1.62, COPPER, 0.42, Math.PI / 2.25, -0.42);
-  const ringB = ring(1.8, INK, 0.14, Math.PI / 1.9, 0.6);
+  const ringA = ring(1.46, COPPER, 0.42, Math.PI / 2.25, -0.42);
+  const ringB = ring(1.6, INK, 0.14, Math.PI / 1.9, 0.6);
   group.add(ringA, ringB);
 
   // satellite node riding ring A
@@ -240,7 +247,10 @@ function initSubstrate(canvas) {
     );
   }
 
-  const resize = () => fitToParent(renderer, camera, canvas);
+  const resize = () => {
+    fitToParent(renderer, camera, canvas);
+    frameSubstrate();
+  };
   new ResizeObserver(resize).observe(canvas.parentElement);
   resize();
 
@@ -254,7 +264,7 @@ function initSubstrate(canvas) {
     group.scale.setScalar(breathe);
 
     const a = t * 0.42;
-    satellite.position.set(Math.cos(a) * 1.62, Math.sin(a) * 1.62, 0);
+    satellite.position.set(Math.cos(a) * 1.46, Math.sin(a) * 1.46, 0);
 
     renderer.render(scene, camera);
   });
